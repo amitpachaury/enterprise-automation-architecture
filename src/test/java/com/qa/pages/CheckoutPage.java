@@ -37,9 +37,8 @@ public class CheckoutPage extends BasePage {
         clickElement(continueButton);
         return this;
     }
-    public CheckoutPage clickFinish(){
+    public void clickFinish(){
         clickElement(finishButton);
-        return this;
     }
 
     public CheckoutPage placeOrder(String firstName, String lastName, String code){

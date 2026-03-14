@@ -131,13 +131,22 @@ public class DriverManager {
                 "--disable-extensions",
                 "--disable-popup-blocking",
                 "--disable-infobars",
-                "--no-sandbox",            // Required inside Docker
-                "--disable-dev-shm-usage", // Prevents Chrome crashes in Docker
-                "--remote-allow-origins=*"
+                "--no-sandbox",
+                "--disable-dev-shm-usage",
+                "--remote-allow-origins=*",
+                "--disable-features=PasswordLeakDetection,PasswordManager"
         );
+
+        options.setExperimentalOption("prefs",
+                java.util.Map.of(
+                        "credentials_enable_service", false,
+                        "profile.password_manager_enabled", false,
+                        "profile.password_manager_leak_detection", false
+                )
+        );
+
         if (isHeadless()) {
             options.addArguments("--headless=new");
-            log.info("Chrome running headless");
         }
         return options;
     }

@@ -10,6 +10,7 @@ public class DashboardPage extends BasePage{
 
     private final By pageTitle = By.cssSelector(".title");
     private final By productItems = By.cssSelector(".inventory_item");
+    private final By addToCartButton = By.cssSelector("[data-test^='add-to-cart']");
     private final By cartIcon = By.cssSelector((".shopping_cart_link"));
     private final By cartBadge = By.cssSelector(".shopping_cart_badge");
     private final By sortDropdown = By.cssSelector("[data-test='product_sort_container']");
@@ -19,6 +20,12 @@ public class DashboardPage extends BasePage{
     public String getPageTitle(){
         return getText(pageTitle);
 
+    }
+
+    public DashboardPage addFirstProductToCart() {
+        log.info("Adding first product to cart");
+        clickElement(addToCartButton);
+        return this;
     }
 
     public int getProductCount(){

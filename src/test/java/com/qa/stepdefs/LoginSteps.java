@@ -8,11 +8,25 @@ import org.testng.Assert;
 public class LoginSteps {
     private LoginPage loginPage;
     private DashboardPage dashboardPage;
+    private final ScenarioContext context;
+
+
+    public LoginSteps(ScenarioContext context) {
+        this.context = context;
+    }
+
 
     @Given("user is on the login page")
     public void user_is_on_the_login_page() {
         loginPage  = new LoginPage();
         loginPage.navigateTo("https://www.saucedemo.com");
+    }
+
+    @Given("user is logged in")
+    public void user_is_logged_in() {
+        loginPage = new LoginPage();
+        loginPage.navigateTo("https://www.saucedemo.com");
+        context.dashboardPage = loginPage.login("standard_user", "secret_sauce");
     }
     @When("user enters a valid username")
     public void user_enters_a_valid_username() {

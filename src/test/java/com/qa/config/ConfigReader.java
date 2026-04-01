@@ -76,6 +76,10 @@ public class ConfigReader {
         return get("api.base.url");
     }
 
+    public String getApiKey() {
+        return get("api.key");
+    }
+
     public String get(String key){
         String value = System.getProperty(key, properties.getProperty(key));
         if (value == null){

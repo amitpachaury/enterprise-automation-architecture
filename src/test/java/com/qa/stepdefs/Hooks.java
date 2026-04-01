@@ -20,18 +20,27 @@ public class Hooks {
     public void setUp(Scenario scenario){
         log.info("Starting scenario: {}", scenario.getName());
         log.info("Tags: {}", scenario.getSourceTagNames());
-        DriverManager.initDriver();
+        if (!scenario.getSourceTagNames().contains("@api")) {
+            DriverManager.initDriver();
+        }
     }
     @After
     public void tearDown(Scenario scenario){
-        if(scenario.isFailed()){
-            byte[] screenshot = ((TakesScreenshot) DriverManager.getDriver()).getScreenshotAs(OutputType.BYTES);
-            scenario.attach(screenshot, "image/png", scenario.getName());
-            log.warn("Scenario FAILED — screenshot attached: {}", scenario.getName());
-
+        if (scenario.isFailed()) {
+            // Only take screenshot if driver was initialised
+            if (!scenario.getSourceTagNames().contains("@api")) {
+                byte[] screenshot = ((TakesScreenshot) DriverManager.getDriver())
+                        .getScreenshotAs(OutputType.BYTES);
+                scenario.attach(screenshot, "image/png", scenario.getName());
+                log.warn("Scenario FAILED — screenshot attached: {}", scenario.getName());
+            }
         }
         log.info("Scenario status: {}", scenario.getStatus());
-        DriverManager.quitDriver();
+        log.info("Scenario status: {}", scenario.getStatus());
+
+        if (!scenario.getSourceTagNames().contains("@api")) {
+            DriverManager.quitDriver();
+        }
 
     }
 }

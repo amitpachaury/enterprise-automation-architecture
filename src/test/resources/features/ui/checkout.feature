@@ -6,7 +6,7 @@ Feature: Checkout Functionality
   Background:
     Given user is logged in
 
-  @smoke
+  @smoke @ui
   Scenario: Complete Purchase Flow
     When user adds first product to cart
     And user goes to cart
@@ -15,7 +15,7 @@ Feature: Checkout Functionality
     And user places the order
     Then order confirmation is displayed
 
-  @regression
+  @regression @ui
   Scenario: Checkout with missing first name
     When user adds first product to cart
     And user goes to cart
@@ -23,12 +23,12 @@ Feature: Checkout Functionality
     And user submits shipping info with empty firstname
     Then error message is displayed on checkout page
 
-  @regression
+  @regression @ui
   Scenario: Cart item count after adding product
     When user adds first product to cart
     Then cart count should be 1
 
-  @regression
+  @regression @ui
   Scenario Outline: Checkout form validation
     When user adds first product to cart
     And user goes to cart

@@ -5,4 +5,7 @@ public class ScenarioContext {
     public DashboardPage dashboardPage;
     public String lastErrorMessage;
 
+    public String createdUserId;
+    public String authToken;
+
 }

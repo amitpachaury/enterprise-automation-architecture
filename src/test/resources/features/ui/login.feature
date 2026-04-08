@@ -6,28 +6,28 @@ Feature: Login Functionality
   Background:
     Given user is on the login page
 
-  @smoke
+  @smoke @ui
   Scenario: Valid login
     When user enters a valid username
     And user enters a valid password
     And user clicks on Login button
     Then dashboard page is displayed
 
-  @regression
+  @regression @ui
   Scenario: Locked user
     When user enters a valid username for locked user
     And user enters a valid password
     And user clicks on Login button
     Then error message is displayed
 
-  @regression
+  @regression @ui
   Scenario: Empty Username
     When user enters a empty username
     And user enters a valid password
     And user clicks on Login button
     Then error message contains "Username is required"
 
-  @regression
+  @regression @ui
   Scenario Outline: Multiple invalid credentials
     When user enters a invalid '<username>'
     And user enters a invalid password '<password>'

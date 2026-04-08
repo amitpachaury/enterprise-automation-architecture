@@ -6,7 +6,7 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(
         features = "src/test/resources/features",
         glue = {"com.qa.stepdefs", "com.qa.stepdefs.api"},
-        tags = "@api",
+        tags = "@ui or @api or @hybrid",
         plugin = {"pretty",
                   "html:target/cucumber-reports/report.html",
                   "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"

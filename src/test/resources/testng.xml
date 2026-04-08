@@ -3,7 +3,10 @@
 
 <suite name="enterprise-automation-architecture" verbose="1">
 
-    <test name="Smoke Tests">
+    <listeners>
+        <listener class-name="com.qa.retry.RetryAnnotationTransformer"></listener>
+    </listeners>
+    <test name="All Tests">
         <classes>
             <class name="com.qa.runners.TestRunner"/>
         </classes>
